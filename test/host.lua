@@ -12,7 +12,7 @@ run("mkdir", "-p", dir .. "/repo")
 run("git", "-C", dir .. "/repo", "init", "-q", "-b", "main")
 run("git", "-C", dir .. "/repo", "-c", "user.name=t", "-c", "user.email=t@t", "commit", "-q", "--allow-empty", "-m", "i")
 local here = debug and debug.getinfo and debug.getinfo(1, "S").source:match("^@(.*)/test/[^/]+$") or "."
-local P = dofile(here .. "/projects.lua").setup{ state_file = dir .. "/state.json", worktrees = dir .. "/wt" }
+local P = dofile(here .. "/lua/projects.lua").setup{ state_file = dir .. "/state.json", worktrees = dir .. "/wt" }
 local I = P._internal
 
 local trees = I.worktrees(dir .. "/repo")
