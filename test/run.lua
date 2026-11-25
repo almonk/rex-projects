@@ -119,7 +119,7 @@ git(repo, "branch", "feature-x")
 os.execute("mkdir -p " .. sh(tmp .. "/plain"))
 
 package.loaded.projects = nil
-local P = dofile("projects.lua").setup{
+local P = dofile("lua/projects.lua").setup{
   worktrees = tmp .. "/wt",
   state_file = tmp .. "/state/projects.json",
   roots = {},

@@ -10,13 +10,38 @@ Rex then opens a session in that folder. **Remove Project from List…** forgets
 
 ## Install
 
-Save `projects.lua` next to your `init.lua` (`~/.config/rex/` on macOS and Linux) and add this line to `init.lua`:
+Save `lua/projects.lua` next to your `init.lua` (`~/.config/rex/` on macOS and Linux) and add this line to `init.lua`:
 
 ```lua
 require("projects")
 ```
 
 Servers older than control API revision 17 have no `rex.ui`; the script then does nothing.
+
+### Using Amber
+
+With [Amber](https://github.com/rawnly/amber), add rex-projects to your plugins in `~/.config/rex/init.lua`:
+
+```lua
+local amber = dofile(os.getenv("HOME") .. "/.local/share/rex/amber/amber.lua")
+
+amber.setup {
+    plugins = {
+        {
+            "almonk/rex-projects",
+            main = "projects",
+            opts = {
+                key       = "alt+cmd+n",        -- false binds no key
+                worktrees = "~/.rex/worktrees", -- new worktrees go in <dir>/<project>/<branch>
+                roots     = { "~/Code" },       -- folders whose repositories are listed without adding them
+            },
+        },
+    },
+}
+```
+
+Then run `rex config reload` once so Rex loads Amber, then `amber install`, which reloads Rex for you.
+
 
 ## Configure
 
